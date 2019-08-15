@@ -6,7 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-admin = User.create({
-  email: admin@test.com,
-  password: "secret"
-})
+admin = FactoryBot.create(:user, email: "admin@test.com")
+FactoryBot.create_list(:task, 10, user: admin)

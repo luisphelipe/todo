@@ -9,5 +9,11 @@ module Types
     def test_field
       "Hello World!"
     end
+
+    field :me, Types::Models::UserType, null:false 
+    
+    def me 
+      User.first
+    end
   end
 end
