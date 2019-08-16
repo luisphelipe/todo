@@ -8,7 +8,7 @@ module Todo
       operation_name = params[:operationName]
       context = {
         # Query context goes here, for example:
-        current_user: current_user,
+        current_user: current_resource_owner,
       }
       result = TodoSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
       render json: result
