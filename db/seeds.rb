@@ -6,5 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+app = Doorkeeper::Application.find_or_create_by({
+  name: "React Native App",
+  redirect_uri: "urn:ietf:wg:oauth:2.0:oob",
+})
+
+puts "Created DoorkeeperApp"
+puts "Client ID: #{app.uid}"
+puts "Client Secret: #{app.secret}"
+
 admin = FactoryBot.create(:user, email: "admin@test.com")
 FactoryBot.create_list(:task, 10, user: admin)
+
+puts "Created admin test account"
+puts "Admin Email: #{admin.email}"
+puts "Admin Password: password"
