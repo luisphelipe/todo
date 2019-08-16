@@ -16,7 +16,7 @@ module Mutations
 
       return { errors: ["cliente app nao encontrado"] } unless app
 
-      user = User.create(args.extract!(:email, :password, :password_confirmation))
+      user = User.new(args.extract!(:email, :password, :password_confirmation))
 
       return { errors: user.errors.full_messages } unless user.save
       
