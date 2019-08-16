@@ -19,7 +19,7 @@ RSpec.describe "Query Me" do
   it "return field and tasks" do
     user = FactoryBot.create(:user, :with_tasks)
 
-    response = TodoSchema.execute(query)
+    response = TodoSchema.execute(query, context: { current_user: user })
 
     expect(response['data']).to be_present
     expect(response['erros']).not_to be_present

@@ -3,19 +3,17 @@ require "rails_helper"
 RSpec.describe "User signup" do
   let(:query) {
     "
-      mutation userSignupTest(
+      mutation userLoginTest(
         $clientId: String!,
         $clientSecret: String!,
         $email: String!,
-        $password: String!,
-        $passwordConfirmation: String!
+        $password: String!
       ){
-        userSignup(
+        userLogin(
           clientId: $clientId,  
           clientSecret: $clientSecret,
           email: $email,
           password: $password,
-          passwordConfirmation: $passwordConfirmation
         ) {
           user {
             id
@@ -37,12 +35,12 @@ RSpec.describe "User signup" do
 
   describe "happy path" do
     it "just works" do
+      user = FactoryBot.create(:user)
       params = {
         "clientId": "#{app.uid}",  
         "clientSecret": "#{app.secret}",
-        "email": "test@test.com",
-        "password": "password",
-        "passwordConfirmation": "password"
+        "email": "#{user.email}",
+        "password": "password"
       }
 
       response = PublicSchema.execute(query, variables: params)
@@ -50,7 +48,7 @@ RSpec.describe "User signup" do
       expect(response["errors"]).to_not be_present
       expect(response["data"]).to be_present
 
-      response = response.dig("data", "userSignup")
+      response = response.dig("data", "userLogin")
 
       expect(response["user"]).to be_present
       expect(response["user"]["id"]).to eql(User.last.id.to_s)
@@ -63,7 +61,7 @@ RSpec.describe "User signup" do
     xit "wrong client app uid or password" do
     end
 
-    xit "problem creating user" do
+    xit "incorrect user email or password" do
     end
   end
 end

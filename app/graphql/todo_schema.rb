@@ -1,4 +1,4 @@
 class TodoSchema < GraphQL::Schema
-  mutation(Types::MutationType)
-  query(Types::QueryType)
+  mutation(Types::Todo::MutationType)
+  query(Types::Todo::QueryType)
 end
