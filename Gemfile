@@ -69,3 +69,5 @@ end
 gem 'irb'
 
 gem 'doorkeeper'
+
+gem 'rack-cors'
