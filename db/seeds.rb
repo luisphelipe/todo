@@ -16,11 +16,6 @@ puts "Client ID: #{app.uid}"
 puts "Client Secret: #{app.secret}"
 
 admin = User.create(:user, email: "admin@test.com")
-admin.tasks.create(title: 'test_task1')
-admin.tasks.create(title: 'test_task2')
-admin.tasks.create(title: 'test_task3')
-admin.tasks.create(title: 'test_task4')
-admin.tasks.create(title: 'test_task5')
 
 puts "Created admin test account"
 puts "Admin Email: #{admin.email}"
