@@ -14,9 +14,3 @@ app = Doorkeeper::Application.find_or_create_by({
 puts "Created DoorkeeperApp"
 puts "Client ID: #{app.uid}"
 puts "Client Secret: #{app.secret}"
-
-admin = User.create(:user, email: "admin@test.com")
-
-puts "Created admin test account"
-puts "Admin Email: #{admin.email}"
-puts "Admin Password: password"
